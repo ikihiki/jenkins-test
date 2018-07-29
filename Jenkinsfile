@@ -7,22 +7,13 @@ pipeline {
       }
     }
     stage('build') {
-      parallel {
-        stage('build') {
-          steps {
-            sh 'npm run tsc'
-          }
-        }
-        stage('test') {
-          steps {
-            sh 'npm run test'
-          }
-        }
+      steps {
+        sh 'npm run tsc'
       }
     }
-    stage('Finish') {
+    stage('test') {
       steps {
-        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, cleanupMatrixParent: true)
+        sh 'npm run test'
       }
     }
   }
