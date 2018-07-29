@@ -3,17 +3,26 @@ pipeline {
   stages {
     stage('install') {
       steps {
-        sh 'npm install'
+        dir(path: 'front') {
+          sh 'npm install'
+        }
+
       }
     }
     stage('build') {
       steps {
-        sh 'npm run tsc'
+        dir(path: 'front') {
+          sh 'npm run tsc'
+        }
+
       }
     }
     stage('test') {
       steps {
-        sh 'npm run test'
+        dir(path: 'front') {
+          sh 'npm run test'
+        }
+
       }
     }
   }
